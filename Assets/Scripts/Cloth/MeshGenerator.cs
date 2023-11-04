@@ -11,12 +11,21 @@ public class MeshGenerator : MonoBehaviour
     public Material greenMaterial; // Material for the green color
     public Material redMaterial; // Material for the red triangle
 
+    public float timeScale = 1.0f;
+
+    public float springConst = 1f;
+
+    private void Update()
+    {
+        Time.timeScale = timeScale;
+        
+    }
     void Start()
     {
         //GenerateMesh();
     }
 
-    [ContextMenu("Delete All")]
+    [ContextMenu("Regenerate")]
     public void Regenerate()
     {
         DeleteAllChildren();
@@ -43,7 +52,6 @@ public class MeshGenerator : MonoBehaviour
         // Calculate the size of each flag stripe
         float stripeWidth = columns / 3f;
 
-        // Instantiate spheres and assign colors
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
@@ -57,19 +65,7 @@ public class MeshGenerator : MonoBehaviour
                 //sphere.AddComponent<Rigidbody>();
                 //sphere.GetComponent<Rigidbody>().useGravity = false;
 
-                // Determine the color of the sphere based on its position
-                if (j < stripeWidth)
-                {
-                    sphere.GetComponent<Renderer>().material = greenMaterial;
-                }
-                else if (j < 2 * stripeWidth)
-                {
-                    sphere.GetComponent<Renderer>().material = whiteMaterial;
-                }
-                else
-                {
-                    sphere.GetComponent<Renderer>().material = blackMaterial;
-                }
+                ApplyFlagColor(stripeWidth, i,j, sphere);
             }
         }
 
@@ -77,31 +73,75 @@ public class MeshGenerator : MonoBehaviour
 
 
 
-        for (int i = 0; i < rows - 2; i++)
+        for (int i = 0; i < rows; i++)
         {
-            for (int j = 0; j < columns - 2; j++)
+            for (int j = 0; j < columns; j++)
             {
-                // structual
-                SpringOscillation springOscillation = spheres[i, j].AddComponent<SpringOscillation>();
-                springOscillation.connectedObject = spheres[i + 1, j].transform;
+                // structural
+                if (i < rows - 1)
+                {
+                    SpringOscillation springOscillation = spheres[i, j].AddComponent<SpringOscillation>();
+                    springOscillation.connectedObject = spheres[i + 1, j].transform;
+                }
 
-                SpringOscillation jSpringOscillation = spheres[i, j].AddComponent<SpringOscillation>();
-                jSpringOscillation.connectedObject = spheres[i, j + 1].transform;
+                if (j < columns - 1)
+                {
+                    SpringOscillation jSpringOscillation = spheres[i, j].AddComponent<SpringOscillation>();
+                    jSpringOscillation.connectedObject = spheres[i, j + 1].transform;
+                }
 
                 // shear
-                SpringOscillation shearSpringOscillation = spheres[i, j].AddComponent<SpringOscillation>();
-                shearSpringOscillation.connectedObject = spheres[i + 1, j + 1].transform;
-
-                SpringOscillation shear2SpringOscillation = spheres[i + 1, j].AddComponent<SpringOscillation>();
-                shear2SpringOscillation.connectedObject = spheres[i, j + 1].transform;
+                if (i < rows - 1 && j < columns - 1)
+                {
+                    SpringOscillation shearSpringOscillation = spheres[i, j].AddComponent<SpringOscillation>();
+                    shearSpringOscillation.connectedObject = spheres[i + 1, j + 1].transform;
+                }
 
                 // diagonal flexion
-                SpringOscillation flexionSpringOscillation = spheres[i, j].AddComponent<SpringOscillation>();
-                flexionSpringOscillation.connectedObject = spheres[i + 2, j].transform;
+                if (i < rows - 2)
+                {
+                    SpringOscillation flexionSpringOscillation = spheres[i, j].AddComponent<SpringOscillation>();
+                    flexionSpringOscillation.connectedObject = spheres[i + 2, j].transform;
+                }
 
-                SpringOscillation flexion2SpringOscillation = spheres[i, j].AddComponent<SpringOscillation>();
-                flexion2SpringOscillation.connectedObject = spheres[i, j + 2].transform;
+                if (j < columns - 2)
+                {
+                    SpringOscillation flexion2SpringOscillation = spheres[i, j].AddComponent<SpringOscillation>();
+                    flexion2SpringOscillation.connectedObject = spheres[i, j + 2].transform;
+                }
             }
+        }
+
+    }
+
+    private void ApplyFlagColor(float stripeWidth, int i, int j, GameObject sphere)
+    {
+        // Determine the color of the sphere based on its position
+       
+        
+        if (j < stripeWidth)
+        {
+            sphere.GetComponent<Renderer>().material = greenMaterial;
+        }
+        else if (j < 2 * stripeWidth)
+        {
+            sphere.GetComponent<Renderer>().material = whiteMaterial;
+        }
+        else
+        {
+            sphere.GetComponent<Renderer>().material = blackMaterial;
+        }
+
+        int midRow= rows / 2;
+
+        //if ( (i<=j)  ) // This condition represents the area of the red triangle
+        //{
+        //    sphere.GetComponent<Renderer>().material = redMaterial;
+        //}
+        
+        if ((i <= j) &&(i+j<columns)  ) // This condition represents the area of the red triangle
+        {
+            sphere.GetComponent<Renderer>().material = redMaterial;
         }
     }
 }

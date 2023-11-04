@@ -9,16 +9,29 @@ public class WindForce : MonoBehaviour
     [SerializeField]
     float _windforce = 10f;
 
+    public Vector3 windForce;
 
     private void OnTriggerStay(Collider other)
+    {
+        windForce = transform.up * _windforce; 
+        var hit = other.gameObject;
+
+        if (hit != null)
+        {
+            IntegrationForces partForces = other.GetComponent<IntegrationForces>();
+            partForces.isUnderWind = true;
+        }
+
+
+    }
+    private void OnTriggerExit(Collider other)
     {
         var hit = other.gameObject;
 
         if (hit != null)
         {
-            var rb = hit.GetComponent<Rigidbody>();
-            var dir = transform.up;
-            rb.AddForce(dir* _windforce);
+            IntegrationForces partForces = other.GetComponent<IntegrationForces>();
+            partForces.isUnderWind = false;
         }
     }
 }

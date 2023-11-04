@@ -3,14 +3,14 @@ using UnityEngine;
 public class SpringOscillation : MonoBehaviour
 {
     public Transform connectedObject;  // The connected sphere
-    public float springConstant = 200f;
+    public float springConstant = 0.2f;
     public float equilibriumLength = 2f;
-    public float mass = 1f;  // equal mass for balls
-    public Vector3 velocity = Vector3.zero;
+
     public Vector3 forceSpring= Vector3.zero;
 
     void Start()
     {
+        springConstant = GetComponentInParent<MeshGenerator>().springConst;
         equilibriumLength = Vector3.Distance(connectedObject.position, transform.position);
     }
 
@@ -28,15 +28,8 @@ public class SpringOscillation : MonoBehaviour
         Vector3 displacement = connectedObject.position - transform.position;
 
         // Calculate the force based on Hooke's Law (F = -k * x)
-        float forceMagnitude = springConstant * (displacement.magnitude - equilibriumLength);
+        float forceMagnitude = -springConstant * (displacement.magnitude - equilibriumLength);
         Vector3 force = forceMagnitude * displacement.normalized;
-
-        // Apply the force 
-        Vector3 acceleration = force / mass;
-
-        // Update velocity
-        float deltaTime = Time.deltaTime;
-        velocity = acceleration * deltaTime;
         return force;
     }
 
