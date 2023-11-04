@@ -52,6 +52,10 @@ public class MeshGenerator : MonoBehaviour
         // Calculate the size of each flag stripe
         float stripeWidth = columns / 3f;
 
+        GameObject TopBar = new GameObject();
+
+        TopBar.transform.parent = transform;
+        TopBar.name = "Top Bar";
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
@@ -62,10 +66,14 @@ public class MeshGenerator : MonoBehaviour
                 sphere.name = $"Sphere_{i}_{j}";
                 spheres[i, j] = sphere;
 
-                //sphere.AddComponent<Rigidbody>();
-                //sphere.GetComponent<Rigidbody>().useGravity = false;
+                if (j==columns-1)
+                {
+                    sphere.transform.SetParent(TopBar.transform);
+                    sphere.GetComponent<IntegrationForces>().isFixed = true;
+                }
+                sphere.GetComponent<Renderer>().material = blackMaterial;
 
-                ApplyFlagColor(stripeWidth, i,j, sphere);
+                //ApplyFlagColor(stripeWidth, i,j, sphere);
             }
         }
 
@@ -132,14 +140,8 @@ public class MeshGenerator : MonoBehaviour
             sphere.GetComponent<Renderer>().material = blackMaterial;
         }
 
-        int midRow= rows / 2;
-
-        //if ( (i<=j)  ) // This condition represents the area of the red triangle
-        //{
-        //    sphere.GetComponent<Renderer>().material = redMaterial;
-        //}
         
-        if ((i <= j) &&(i+j<columns)  ) // This condition represents the area of the red triangle
+        if ((i <= j) &&(i+j<columns)  ) // This for the red triangle 
         {
             sphere.GetComponent<Renderer>().material = redMaterial;
         }

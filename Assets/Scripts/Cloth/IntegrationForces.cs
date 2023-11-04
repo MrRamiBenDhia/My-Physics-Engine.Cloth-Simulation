@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class IntegrationForces : MonoBehaviour
@@ -15,7 +16,13 @@ public class IntegrationForces : MonoBehaviour
 
     public Vector3 force = Vector3.zero;
     public bool isUnderWind = false;
+    public bool isFixed = false; // so it wont move (the fixed top bar)
 
+    DynamicColor dynamicColor;
+    void Start()
+    {
+        dynamicColor = gameObject.GetComponent<DynamicColor>();
+    }
     Vector3 calculateGravity()
     {
         Vector3 gravityForce = new Vector3(0f, -mass * gravity, 0f);
@@ -46,7 +53,7 @@ public class IntegrationForces : MonoBehaviour
         foreach (Vector3 item in springFoces)
         {
             total -= item;
-            
+
         }
         // Debug.Log("~~ total~~");
         // Debug.Log(total);
@@ -56,16 +63,21 @@ public class IntegrationForces : MonoBehaviour
     void calculateForces()
     {
         Vector3 springForce = GetTotalOFSpringForces();
-        Vector3 gravityForce = calculateGravity();
-        //gravityForce = Vector3.zero;
-
-        force = (springForce + gravityForce);
+        if (!isFixed)
+        {
+            Vector3 gravityForce = calculateGravity();
+            force = (springForce + gravityForce);
+        }
+        else
+        {
+            force = springForce;
+        }
 
     }
     public void addWindForce()
     {
-        Vector3 windForce = new Vector3(0,0, 10f);
-        force += windForce/ 0.5f;
+        Vector3 windForce = new Vector3(0, 0, 10f);
+        force += windForce / 0.5f;
     }
 
     void Update()
@@ -87,27 +99,11 @@ public class IntegrationForces : MonoBehaviour
         //! Applying Damping
         velocity *= damping;
 
-        applyVelocityColor(velocity);
+        dynamicColor.applyVelocityColor(velocity);
         // Update position based on velocity
         transform.position += velocity * deltaTime;
 
     }
 
-    void applyVelocityColor(Vector3 velocity)
-    {
-        Renderer renderer = transform.GetComponent<Renderer>();
 
-        // Create a new material instance
-        Material material = new Material(renderer.material);
-        float speed = velocity.magnitude;
-        float maxSpeed = 3f;
-        float normalizedSpeed = Mathf.Clamp(speed / maxSpeed, 0f, 1f);
-
-        // Map the normalized speed to a color
-        Color color = new Color(normalizedSpeed, 0, 1 - normalizedSpeed);
-
-        material.color = color;
-        // Apply the new material to the object
-        renderer.material = material;
-    }
 }

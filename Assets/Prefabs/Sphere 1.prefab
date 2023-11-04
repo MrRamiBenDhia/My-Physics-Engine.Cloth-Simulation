@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5230446174527739946}
   - component: {fileID: 260552743126960349}
   - component: {fileID: 520633133188219503}
+  - component: {fileID: -989145755200425571}
   m_Layer: 0
   m_Name: Sphere 1
   m_TagString: Sphere
@@ -175,3 +176,19 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   gravity: 9.81
   damping: 0.88
+  force: {x: 0, y: 0, z: 0}
+  isUnderWind: 0
+  isFixed: 0
+--- !u!114 &-989145755200425571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504875005704523919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82263251f9d546842924945a7f816429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dynamiqueMaterial: {fileID: 2100000, guid: 19406d2e5c32b884595b9b4a0fe33be2, type: 2}
