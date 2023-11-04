@@ -87,22 +87,27 @@ public class IntegrationForces : MonoBehaviour
         //! Applying Damping
         velocity *= damping;
 
-        //applyVelocityColor(velocity);
+        applyVelocityColor(velocity);
         // Update position based on velocity
         transform.position += velocity * deltaTime;
 
     }
 
-    //void applyVelocityColor(Vector3 velocity)
-    //{
-    //    Material material = transform.GetComponent<Renderer>().material;
-    //    float speed = velocity.magnitude;
-    //    float maxSpeed = 10f; 
-    //    float normalizedSpeed = Mathf.Clamp(speed / maxSpeed, 0f, 1f);
+    void applyVelocityColor(Vector3 velocity)
+    {
+        Renderer renderer = transform.GetComponent<Renderer>();
 
-    //    // Map the normalized speed to a color
-    //    Color color = new Color(normalizedSpeed, 0, 1 - normalizedSpeed);
+        // Create a new material instance
+        Material material = new Material(renderer.material);
+        float speed = velocity.magnitude;
+        float maxSpeed = 3f;
+        float normalizedSpeed = Mathf.Clamp(speed / maxSpeed, 0f, 1f);
 
-    //    material.color = color;
-    //}
+        // Map the normalized speed to a color
+        Color color = new Color(normalizedSpeed, 0, 1 - normalizedSpeed);
+
+        material.color = color;
+        // Apply the new material to the object
+        renderer.material = material;
+    }
 }
