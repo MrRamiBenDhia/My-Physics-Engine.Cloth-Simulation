@@ -66,10 +66,10 @@ public class MeshGenerator : MonoBehaviour
                 sphere.name = $"Sphere_{i}_{j}";
                 spheres[i, j] = sphere;
 
-                if (j==columns-1)
+                if (j == columns - 1)
                 {
                     sphere.transform.SetParent(TopBar.transform);
-                    sphere.GetComponent<IntegrationForces>().isFixed = true;
+                    sphere.GetComponent<IntegrationForces>().enabled = false;
                 }
                 sphere.GetComponent<Renderer>().material = blackMaterial;
 

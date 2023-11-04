@@ -62,17 +62,12 @@ public class IntegrationForces : MonoBehaviour
 
     void calculateForces()
     {
+        if (isFixed)
+        { return; }
         Vector3 springForce = GetTotalOFSpringForces();
-        if (!isFixed)
-        {
-            Vector3 gravityForce = calculateGravity();
-            force = (springForce + gravityForce);
-        }
-        else
-        {
-            force = springForce;
-        }
 
+        Vector3 gravityForce = calculateGravity();
+        force = (springForce + gravityForce);
     }
     public void addWindForce()
     {
