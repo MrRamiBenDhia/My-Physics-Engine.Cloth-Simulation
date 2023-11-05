@@ -2,7 +2,6 @@
 
 This project is a cloth simulation system based on the scientific paper "Deformation Constraints in a Mass-Spring Model to Describe Rigid Cloth Behavior" by Xavier Provot¹²³. 
 
-![Final Cloth Rami BenDhia Video (1)](https://github.com/MrRamiBenDhia/MyPhysicsEngine/assets/112359223/9fb51c4b-89f1-442c-a06f-fd18193b0aa8)
 ## Overview
 
 The simulation system couples a new technique for enforcing constraints on individual cloth particles with an implicit integration method³. It takes into account the non-elastic properties of woven fabrics¹². The cloth object is approximated with a deformable surface network of masses and springs¹². The movement of the cloth is evaluated using the numerical integration of the fundamental law of dynamics¹².
@@ -17,7 +16,7 @@ External forces include the force of gravity Fgr(P i,j) =     g where g  is the 
 
 ## Demo
 
-A short video showcasing the project will be added soon.
+![Final Cloth Rami BenDhia Video (1)](https://github.com/MrRamiBenDhia/MyPhysicsEngine/assets/112359223/9fb51c4b-89f1-442c-a06f-fd18193b0aa8)
 
 ## References
 
