@@ -16,7 +16,13 @@ External forces include the force of gravity Fgr(P i,j) =     g where g  is the 
 
 ## Demo
 
-![Final Cloth Rami BenDhia Video (1)](https://github.com/MrRamiBenDhia/MyPhysicsEngine/assets/112359223/9fb51c4b-89f1-442c-a06f-fd18193b0aa8)
+<!-- ![Final Cloth Rami BenDhia Video (1)](https://github.com/MrRamiBenDhia/MyPhysicsEngine/assets/112359223/9fb51c4b-89f1-442c-a06f-fd18193b0aa8) -->
+
+| Description       | Preview                                                                                                     |
+|-------------------|--------------------------------------------------------------------------------------------------------------|
+| Touch and Drag    | ![Touch and Drag](https://github.com/MrRamiBenDhia/MyPhysicsEngine/assets/112359223/28d232d5-e710-4985-8558-c3a2c75485e4) |
+| Moving Bar        | ![Moving Bar](https://github.com/MrRamiBenDhia/MyPhysicsEngine/assets/112359223/fdf1ba00-5b46-44e5-809f-6948d7b2c198) |
+| Wind Force        | ![Wind Force](https://github.com/MrRamiBenDhia/MyPhysicsEngine/assets/112359223/bf6defa4-46e0-4fdc-8185-7735738c1919) |
 
 ## References
 
