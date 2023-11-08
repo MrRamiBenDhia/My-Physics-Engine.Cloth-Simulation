@@ -8,11 +8,15 @@ The simulation system couples a new technique for enforcing constraints on indiv
 
 ## Simulation Details
 
-The system is the mesh of m x n masses, each mass with position at time t given by Pi,j(t). The evolution of the system is governed by the fundamental law of dynamics: F i,j =  i,j where is the mass at point Pi,j(t), and a i,j is the acceleration caused by the force F i,j¹. 
+The system consists of an m x n mesh of masses, where each mass at position `P(i, j, t)` evolves over time `t`.
+The motion of the masses is governed by the fundamental law of dynamics: `F(i, j) = m * a(i, j)`, 
+where `m` is the mass at point `P(i, j, t)`, and `a(i, j)` is the acceleration caused by the force `F(i, j)`.
 
-Internal forces are tensions of interconnected springs which are described by Hooke’s Law: F = k · u where F is the applied force, u  is the deformation (displacement from equilibrium) of the elastic body subjected to the force  F, and  k is the spring constant¹. 
+Internal forces arise from the tensions of interconnected springs, which are described by Hooke’s Law: `F = k * u`, where `F` is the applied force, 
+`u` is the deformation (displacement from equilibrium) of the elastic body subjected to the force `F`, and `k` is the spring constant¹.
 
-External forces include the force of gravity Fgr(P i,j) =     g where g  is the acceleration of gravity and viscous damping Fdis(P i,j) = -C disv i,j where C dis is the damping coefficient and velocity at point Pi,j¹.
+External forces include the force of gravity `F_gr(P(i, j)) = g`, where `g` is the acceleration due to gravity,
+and viscous damping `F_dis(P(i, j)) = -C_dis * v(i, j)`, where `C_dis` is the damping coefficient and `v(i, j)` is the velocity at point `P(i, j)`.
 
 ## Demo
 
