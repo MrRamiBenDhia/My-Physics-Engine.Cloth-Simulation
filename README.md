@@ -1,6 +1,7 @@
 # Cloth Simulation Project
 
 This project is a cloth simulation system based on the scientific paper "Deformation Constraints in a Mass-Spring Model to Describe Rigid Cloth Behavior" by Xavier Provot¹²³. 
+![Screenshot of the scientific paper](https://github.com/MrRamiBenDhia/My-Physics-Engine.Cloth-Simulation/assets/112359223/cd221ba2-75c0-49a1-a7c9-5a64a5e97fc1)
 
 ## Overview
 
@@ -25,7 +26,7 @@ and viscous damping `F_dis(P(i, j)) = -C_dis * v(i, j)`, where `C_dis` is the da
 | Description       | Preview                                                                                                     |
 |-------------------|--------------------------------------------------------------------------------------------------------------|
 | Touch and Drag    | ![Touch and Drag](https://github.com/MrRamiBenDhia/MyPhysicsEngine/assets/112359223/28d232d5-e710-4985-8558-c3a2c75485e4) |
-| Moving Bar        | ![Moving Bar](https://github.com/MrRamiBenDhia/MyPhysicsEngine/assets/112359223/fdf1ba00-5b46-44e5-809f-6948d7b2c198) |
+| Gravity           | ![Moving Bar](https://github.com/MrRamiBenDhia/MyPhysicsEngine/assets/112359223/fdf1ba00-5b46-44e5-809f-6948d7b2c198) |
 | Wind Force        | ![Wind Force](https://github.com/MrRamiBenDhia/MyPhysicsEngine/assets/112359223/bf6defa4-46e0-4fdc-8185-7735738c1919) |
 
 ## References
