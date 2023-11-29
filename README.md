@@ -21,6 +21,8 @@ and viscous damping `F_dis(P(i, j)) = -C_dis * v(i, j)`, where `C_dis` is the da
 
 ## Demo
 
+###### ^ please wait for the preview .gif to load
+
 <!-- ![Final Cloth Rami BenDhia Video (1)](https://github.com/MrRamiBenDhia/MyPhysicsEngine/assets/112359223/9fb51c4b-89f1-442c-a06f-fd18193b0aa8) -->
 
 | Description       | Preview                                                                                                     |
